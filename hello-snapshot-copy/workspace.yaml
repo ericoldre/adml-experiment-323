@@ -1,0 +1,26 @@
+apiVersion: adml/v0
+kind: workspace
+defaultPlan: snapshot-module/hello-snapshot-copy
+
+metadata:
+  owner: "examples"
+  description: "Authoring example for the snapshot-to-working-copy task type."
+
+connections:
+  snapshot:
+    description: "Snapshot connection that hosts the baseline extracted rowset."
+    provider: postgres
+    required: true
+    methodologyRole: snapshot
+    schema: ./schemas/snapshot/
+
+  working:
+    description: "Working connection that receives the staged rowset."
+    provider: postgres
+    required: true
+    methodologyRole: working
+    schema: ./schemas/working/
+
+connectionBridges:
+  working:
+    - snapshot

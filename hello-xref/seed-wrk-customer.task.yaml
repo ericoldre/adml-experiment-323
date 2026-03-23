@@ -1,0 +1,32 @@
+# ────────────────────────────────────────────────────────────────────────────
+# Seed WRK_CUSTOMER working-table rows
+# ────────────────────────────────────────────────────────────────────────────
+# Loads sample customer rows with FOO-system country codes. The
+# bar_country_name column is intentionally left empty — it will be
+# populated by the value-map-apply task.
+# ────────────────────────────────────────────────────────────────────────────
+
+apiVersion: adml/v0
+kind: task
+type: seed-data-load
+
+id: seed-wrk-customer
+title: "Seed WRK_CUSTOMER rows"
+description: >
+  Loads sample customers with source country codes to demonstrate
+  the value-map-apply task.
+
+connectionName: working
+table: wrk_customer
+preClearTable: true
+dataFile: seed-data/wrk_customer.csv
+dataFormat: csv
+
+columns:
+  mappings:
+    - source: customer_id
+      target: customer_id
+    - source: customer_name
+      target: customer_name
+    - source: src_country_code
+      target: src_country_code

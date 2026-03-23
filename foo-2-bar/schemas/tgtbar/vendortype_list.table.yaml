@@ -1,0 +1,24 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: vendortype_list
+description: "Vendor type lookup table translated from the source SQL Server definition to the closest Postgres-compatible schema."
+database: tgtbar
+
+columns:
+  - name: VendorType
+    type: integer
+    nullable: false
+    key: true
+
+  - name: Description
+    type: varchar(50)
+    nullable: true
+
+  - name: TEST1
+    type: varchar(5)
+    nullable: true
+
+  - name: Text
+    type: varchar(100)
+    nullable: true

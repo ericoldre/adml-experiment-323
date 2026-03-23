@@ -1,0 +1,6 @@
+customer_id,customer_name,src_country_code
+C001,Contoso Ltd,US
+C002,Fabrikam GmbH,DE
+C003,Sakura Corp,JP
+C004,Unknown Origin,
+C005,Mystery Widgets,XX

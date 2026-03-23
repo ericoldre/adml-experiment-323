@@ -1,0 +1,29 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: m_customer_working
+description: "Working-side customer table populated from the snapshot rowset."
+database: working
+
+columns:
+  - name: customer_id
+    type: integer
+    nullable: false
+    key: true
+
+  - name: customer_name
+    type: varchar(100)
+    nullable: false
+
+  - name: legacy_status
+    type: varchar(20)
+    nullable: true
+
+  - name: ready_flag
+    type: varchar(1)
+    nullable: false
+    default: "'N'"
+
+  - name: notes
+    type: varchar(200)
+    nullable: true

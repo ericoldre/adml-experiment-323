@@ -1,0 +1,40 @@
+apiVersion: adml/v0
+kind: workspace
+defaultPlan: plans/main/plan
+
+metadata:
+  owner: "examples"
+  description: "Example ADML workspace demonstrating connection-linked Postgres schema application for the srcfoo, tgtbar, wrkfoo2bar, and migrate datasources."
+
+shared:
+  - "schemas/**"
+  - "seed-data/**"
+
+connections:
+  srcfoo:
+    description: "Postgres datasource whose declared schema is reconciled by the snapshot plan, using the srcfoo PostgreSQL schema as the default search path."
+    provider: postgres
+    required: true
+    schema: ./schemas/srcfoo/
+
+  tgtbar:
+    description: "Postgres datasource reserved for bar-side schema definitions, using the tgtbar PostgreSQL schema as the default search path."
+    provider: postgres
+    required: true
+    schema: ./schemas/tgtbar/
+
+  wrkfoo2bar:
+    description: "Working/augmented schema for the foo-2-bar transformation, using the wrkfoo2bar PostgreSQL schema as the default search path."
+    provider: postgres
+    required: true
+    schema: ./schemas/wrkfoo2bar/
+
+  migrate:
+    description: "Additional Postgres datasource reserved for migration-oriented artifacts, using the migrate PostgreSQL schema as the default search path."
+    provider: postgres
+    required: true
+    schema: ./schemas/migrate/
+
+connectionBridges:
+  wrkfoo2bar:
+    - srcfoo

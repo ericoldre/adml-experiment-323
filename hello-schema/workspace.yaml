@@ -1,0 +1,14 @@
+apiVersion: adml/v0
+kind: workspace
+defaultPlan: orders-module/apply-schemas-only
+
+metadata:
+  owner: "examples"
+  description: "Example workspace demonstrating declarative working-database schema definitions."
+
+connections:
+  working:
+    description: "Working database where migration transformations are executed."
+    provider: postgres
+    required: true
+    schema: ./schemas/working/

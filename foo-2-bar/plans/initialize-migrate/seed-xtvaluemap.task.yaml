@@ -1,0 +1,50 @@
+apiVersion: adml/v0
+kind: task
+type: seed-data-load
+
+id: seed-xtvaluemap
+title: "Seed XTVALUEMAP data"
+description: "Loads XTVALUEMAP rows from the example CSV file into the migrate schema."
+
+connectionName: migrate
+table: XTVALUEMAP
+preClearTable: true
+dataFile: ../../seed-data/migrate/XTVALUEMAP.csv
+dataFormat: csv
+
+columns:
+  mappings:
+    - source: DATASOURCE
+      target: DATASOURCE
+    - source: CHECKTABLE
+      target: CHECKTABLE
+    - source: ZXREF_ZSOURCE
+      target: ZXREF_ZSOURCE
+    - source: ZXREF_VALUE
+      target: ZXREF_VALUE
+    - source: ZXREF_DESCRIPTION
+      target: ZXREF_DESCRIPTION
+    - source: TARGET_VALUE
+      target: TARGET_VALUE
+    - source: TARGET_DESCRIPTION
+      target: TARGET_DESCRIPTION
+    - source: LOAD_VALUE
+      target: LOAD_VALUE
+    - source: SUGGESTED_VALUE
+      target: SUGGESTED_VALUE
+    - source: NOT_APPLICABLE
+      target: NOT_APPLICABLE
+    - source: CREATED_FROM
+      target: CREATED_FROM
+    - source: LOCKED_BY
+      target: LOCKED_BY
+    - source: LOCKED_ON
+      target: LOCKED_ON
+    - source: CREATED_BY
+      target: CREATED_BY
+    - source: CREATED_ON
+      target: CREATED_ON
+    - source: MODIFIED_BY
+      target: MODIFIED_BY
+    - source: MODIFIED_ON
+      target: MODIFIED_ON

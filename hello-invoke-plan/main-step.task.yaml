@@ -1,0 +1,6 @@
+apiVersion: adml/v0
+kind: task
+type: simulate
+id: main-step
+title: "Main work step"
+outcome: succeeded

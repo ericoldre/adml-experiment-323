@@ -1,0 +1,11 @@
+apiVersion: adml/v0
+kind: task
+type: schema-apply
+
+id: apply-working-schema
+title: "Apply working-database schema"
+description: >
+  Reads the schema declared on the 'working' connection and ensures
+  WRK_CUSTOMER exists with the correct columns, types, and constraints.
+
+connectionName: working

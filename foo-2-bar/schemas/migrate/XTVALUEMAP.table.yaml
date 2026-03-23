@@ -1,0 +1,80 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: XTVALUEMAP
+description: "Value mapping table translated from the MIGRATE.dbo.XTVALUEMAP SQL Server definition to the closest Postgres-compatible schema."
+database: migrate
+
+columns:
+  - name: DATASOURCE
+    type: varchar(50)
+    nullable: false
+    key: true
+
+  - name: CHECKTABLE
+    type: varchar(250)
+    nullable: false
+    key: true
+
+  - name: ZXREF_ZSOURCE
+    type: varchar(50)
+    nullable: false
+    key: true
+
+  - name: ZXREF_VALUE
+    type: varchar(100)
+    nullable: false
+    key: true
+
+  - name: ZXREF_DESCRIPTION
+    type: varchar(500)
+    nullable: true
+
+  - name: TARGET_VALUE
+    type: varchar(100)
+    nullable: true
+
+  - name: TARGET_DESCRIPTION
+    type: varchar(500)
+    nullable: true
+
+  - name: LOAD_VALUE
+    type: varchar(100)
+    nullable: true
+
+  - name: SUGGESTED_VALUE
+    type: varchar(100)
+    nullable: true
+
+  - name: NOT_APPLICABLE
+    type: boolean
+    nullable: false
+    default: "false"
+
+  - name: CREATED_FROM
+    type: varchar(500)
+    nullable: true
+
+  - name: LOCKED_BY
+    type: varchar(50)
+    nullable: true
+
+  - name: LOCKED_ON
+    type: timestamp
+    nullable: true
+
+  - name: CREATED_BY
+    type: varchar(50)
+    nullable: true
+
+  - name: CREATED_ON
+    type: timestamp
+    nullable: true
+
+  - name: MODIFIED_BY
+    type: varchar(50)
+    nullable: true
+
+  - name: MODIFIED_ON
+    type: timestamp
+    nullable: true

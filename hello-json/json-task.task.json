@@ -1,0 +1,9 @@
+{
+  "apiVersion": "adml/v0",
+  "kind": "task",
+  "type": "simulate",
+  "id": "json-task",
+  "title": "Task authored in JSON",
+  "description": "This task is defined as a .json file to show that JSON works identically to YAML.",
+  "outcome": "succeeded"
+}

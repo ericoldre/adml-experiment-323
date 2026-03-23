@@ -1,0 +1,13 @@
+apiVersion: adml/v0
+kind: workspace
+defaultPlan: hello-postgres
+
+metadata:
+  owner: "examples"
+  description: "Simplest possible ADML workspace — one plan, one sql-execute task against Postgres."
+
+connections:
+  working:
+    description: "Working database (Postgres) for the hello-postgres example."
+    provider: postgres
+    required: true

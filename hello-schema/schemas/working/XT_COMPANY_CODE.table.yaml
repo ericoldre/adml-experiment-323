@@ -1,0 +1,22 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: xt_company_code
+description: "Cross-reference table mapping source company codes to target company codes."
+database: working
+
+columns:
+  - name: source_value
+    type: varchar(10)
+    nullable: false
+    key: true
+    description: "Source system company code."
+
+  - name: target_value
+    type: varchar(10)
+    nullable: false
+    description: "Target system company code."
+
+  - name: description
+    type: varchar(100)
+    nullable: true

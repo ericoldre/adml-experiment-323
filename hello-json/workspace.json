@@ -1,0 +1,9 @@
+{
+  "apiVersion": "adml/v0",
+  "kind": "workspace",
+  "defaultPlan": "hello-json",
+  "metadata": {
+    "owner": "examples",
+    "description": "Demonstrates that YAML and JSON are interchangeable in ADML. This workspace is JSON, the plan is YAML, and tasks use a mix of both formats."
+  }
+}

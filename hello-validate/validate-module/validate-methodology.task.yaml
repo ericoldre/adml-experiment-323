@@ -1,0 +1,6 @@
+apiVersion: adml/v0
+kind: task
+type: methodology-validate
+id: validate-working-methodology
+files: schemas/wrk/*.table.yaml
+reportPath: reports/methodology-report.json

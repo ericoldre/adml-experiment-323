@@ -1,0 +1,44 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: salesorder
+description: "Sales order table translated from the source SQL Server definition to the closest Postgres-compatible schema."
+database: foo
+
+columns:
+  - name: OrderID
+    type: integer
+    nullable: false
+    key: true
+
+  - name: CustomerID
+    type: integer
+    nullable: true
+
+  - name: FirstName
+    type: varchar(100)
+    nullable: true
+
+  - name: LastName
+    type: varchar(100)
+    nullable: true
+
+  - name: ProductID
+    type: integer
+    nullable: true
+
+  - name: UnitPrice
+    type: numeric(10,2)
+    nullable: true
+
+  - name: OrderAmount
+    type: numeric(10,2)
+    nullable: true
+
+  - name: OrderDate
+    type: timestamp
+    nullable: true
+
+  - name: ShipDate
+    type: timestamp
+    nullable: true

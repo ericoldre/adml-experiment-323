@@ -1,0 +1,11 @@
+apiVersion: adml/v0
+kind: task
+type: schema-apply
+
+id: apply-snapshot-schema
+title: "Apply snapshot-side schema"
+description: >
+  Creates the example snapshot-side staging table used as the source relation
+  for the snapshot-to-working-copy task.
+
+connectionName: snapshot

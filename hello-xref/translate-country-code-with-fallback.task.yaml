@@ -1,0 +1,34 @@
+# ────────────────────────────────────────────────────────────────────────────
+# Apply a value map — different definition with NOT_MAPPED default
+# ────────────────────────────────────────────────────────────────────────────
+# Same lookup source, different missing-value behavior. This task uses a
+# second definition whose onMissing/default writes "NOT_MAPPED" instead
+# of "UNKNOWN". This shows how definitions own the full mapping contract
+# and tasks stay focused on which table/columns to apply it to.
+# ────────────────────────────────────────────────────────────────────────────
+
+apiVersion: adml/v0
+kind: task
+type: value-map-apply
+id: translate-country-code-with-fallback
+
+title: "Map country codes with NOT_MAPPED fallback"
+description: >
+  Like translate-country-code, but targets WRK_SALES_ORDER and uses a
+  definition that writes "NOT_MAPPED" for unresolved values.
+
+connectionName: working
+table: wrk_sales_order
+
+valueMap: foo-country-code-to-bar-country-name-not-mapped
+
+inputs:
+  - origin_country
+
+outputs:
+  - dest_country_name
+
+# Only process rows where the input is non-blank and the output is not yet set.
+where: |
+  NULLIF(origin_country, '') IS NOT NULL
+  AND dest_country_name IS NULL

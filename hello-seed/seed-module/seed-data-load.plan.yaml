@@ -1,0 +1,13 @@
+apiVersion: adml/v0
+kind: plan
+
+id: seed-data-load
+title: "Seed Customer Data"
+description: "Applies the working-database schema, then loads customer reference data from CSV."
+
+entries:
+  - task: apply-working-schema
+    remarks: "Ensure working-database tables exist and match declarations."
+
+  - task: seed-customers
+    remarks: "Load customer reference data from CSV into M_CUSTOMERS."

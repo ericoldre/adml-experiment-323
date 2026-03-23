@@ -1,0 +1,20 @@
+apiVersion: adml/v0
+kind: plan
+
+id: plan
+title: "Product transform"
+description: "Stages supplier data and applies XTVALUEMAP-backed value mapping for the foo-2-bar product transformation flow."
+defaultConnection: wrkfoo2bar
+
+entries:
+  - task: insert-staging-table
+    remarks: "Copy srcfoo supplier rows into vendor_foo_supplier_s working table."
+
+  - task: normalize-supplier-codes
+    remarks: "Trim staged supplier CountryCode and StateCode values before XTVALUEMAP lookups."
+
+  - task: xref-supplier-country
+    remarks: "Resolve staged supplier CountryCode values to BAR country codes via XTVALUEMAP."
+
+  - task: xref-supplier-state
+    remarks: "Resolve staged supplier StateCode values to BAR region values via XTVALUEMAP."

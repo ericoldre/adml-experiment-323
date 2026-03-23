@@ -1,0 +1,42 @@
+apiVersion: adml/v0
+kind: task
+type: seed-data-load
+
+id: seed-supplier
+title: "Seed Supplier data"
+description: "Loads Supplier rows from the example CSV file into the foo schema."
+
+connectionName: srcfoo
+table: supplier
+preClearTable: true
+dataFile: ../../seed-data/srcfoo/supplier.csv
+dataFormat: csv
+
+columns:
+  mappings:
+    - source: SupplierID
+      target: SupplierID
+    - source: Supplier
+      target: Supplier
+    - source: AddressType
+      target: AddressType
+    - source: AddressLine1
+      target: AddressLine1
+    - source: AddressLine2
+      target: AddressLine2
+    - source: City
+      target: City
+    - source: StateCode
+      target: StateCode
+    - source: PostalCode
+      target: PostalCode
+    - source: CountryCode
+      target: CountryCode
+    - source: PhoneNumber
+      target: PhoneNumber
+    - source: ActiveFlag
+      target: ActiveFlag
+    - source: CreatedDate
+      target: CreatedDate
+    - source: CreatedBy
+      target: CreatedBy

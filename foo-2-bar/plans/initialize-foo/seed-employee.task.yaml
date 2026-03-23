@@ -1,0 +1,50 @@
+apiVersion: adml/v0
+kind: task
+type: seed-data-load
+
+id: seed-employee
+title: "Seed EMPLOYEE data"
+description: "Loads EMPLOYEE rows from the example CSV file into the foo schema, omitting the binary Photo column."
+
+connectionName: srcfoo
+table: employee
+preClearTable: true
+dataFile: ../../seed-data/srcfoo/employee.csv
+dataFormat: csv
+
+columns:
+  mappings:
+    - source: EmployeeID
+      target: EmployeeID
+    - source: LastName
+      target: LastName
+    - source: FirstName
+      target: FirstName
+    - source: Title
+      target: Title
+    - source: TitleOfCourtesy
+      target: TitleOfCourtesy
+    - source: BirthDate
+      target: BirthDate
+    - source: HireDate
+      target: HireDate
+    - source: Address
+      target: Address
+    - source: City
+      target: City
+    - source: Region
+      target: Region
+    - source: PostalCode
+      target: PostalCode
+    - source: Country
+      target: Country
+    - source: HomePhone
+      target: HomePhone
+    - source: Extension
+      target: Extension
+    - source: Notes
+      target: Notes
+    - source: ReportsTo
+      target: ReportsTo
+    - source: PhotoPath
+      target: PhotoPath

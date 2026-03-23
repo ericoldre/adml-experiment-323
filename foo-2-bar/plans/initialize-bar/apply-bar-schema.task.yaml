@@ -1,0 +1,12 @@
+apiVersion: adml/v0
+kind: task
+type: schema-apply
+
+id: apply-bar-schema
+title: "Apply tgtbar datasource schema"
+description: >
+  Reads the schema declared on the 'tgtbar' connection and ensures
+  the Postgres datasource contains the expected tables, columns,
+  and constraints.
+
+connectionName: tgtbar

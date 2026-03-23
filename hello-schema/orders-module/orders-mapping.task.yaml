@@ -1,0 +1,43 @@
+apiVersion: adml/v0
+kind: task
+type: mapping
+
+id: orders-mapping
+title: "Orders field mapping"
+description: "Declares field-level mapping rules for the Orders target table."
+
+target: M_ORDERS
+
+fields:
+  - target: ORDER_ID
+    source: SRC_ORDERS.AUFNR
+    transform: copy
+
+  - target: CUSTOMER_ID
+    source: SRC_ORDERS.KUNNR
+    transform: copy
+
+  - target: ORDER_DATE
+    source: SRC_ORDERS.ERDAT
+    transform: copy
+
+  - target: ORDER_TYPE
+    source: SRC_ORDERS.AUART
+    transform:
+      type: lookup
+      table: XT_ORDER_TYPE
+      key: SOURCE_VALUE
+      value: TARGET_VALUE
+      default: "ZOTH"
+
+  - target: CURRENCY
+    source: SRC_ORDERS.WAERS
+    transform: copy
+
+  - target: NET_VALUE
+    source: SRC_ORDERS.NETWR
+    transform: copy
+
+  - target: SOURCE_ORDER_NUMBER
+    source: SRC_ORDERS.AUFNR
+    transform: copy

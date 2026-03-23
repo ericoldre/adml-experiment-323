@@ -1,0 +1,12 @@
+apiVersion: adml/v0
+kind: task
+type: schema-apply
+
+id: apply-migrate-schema
+title: "Apply migrate datasource schema"
+description: >
+  Reads the schema declared on the 'migrate' connection and ensures
+  the Postgres datasource contains the expected tables, columns,
+  and constraints.
+
+connectionName: migrate

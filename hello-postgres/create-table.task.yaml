@@ -1,0 +1,14 @@
+apiVersion: adml/v0
+kind: task
+type: sql-execute
+
+id: create-table
+title: "Create hello table"
+description: "Creates a minimal table in the working Postgres database."
+
+connectionName: working
+sql: |
+  CREATE TABLE IF NOT EXISTS hello (
+    id      SERIAL PRIMARY KEY,
+    message TEXT NOT NULL DEFAULT 'Hello from ADML!'
+  );

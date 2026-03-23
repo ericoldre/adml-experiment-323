@@ -1,0 +1,42 @@
+apiVersion: adml/v0
+kind: task
+type: seed-data-load
+
+id: seed-vendor
+title: "Seed VENDOR data"
+description: "Loads VENDOR rows from the example CSV file into the tgtbar schema."
+
+connectionName: tgtbar
+table: vendor
+preClearTable: true
+dataFile: ../../seed-data/tgtbar/vendor.csv
+dataFormat: csv
+
+columns:
+  mappings:
+    - source: VendorID
+      target: VendorID
+    - source: Vendor
+      target: Vendor
+    - source: VendorType
+      target: VendorType
+    - source: Address1
+      target: Address1
+    - source: Address2
+      target: Address2
+    - source: Address3
+      target: Address3
+    - source: Address4
+      target: Address4
+    - source: City
+      target: City
+    - source: Region
+      target: Region
+    - source: Zipcode
+      target: Zipcode
+    - source: Country
+      target: Country
+    - source: Phone
+      target: Phone
+    - source: Website
+      target: Website

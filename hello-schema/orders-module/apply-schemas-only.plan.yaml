@@ -1,0 +1,10 @@
+apiVersion: adml/v0
+kind: plan
+
+id: apply-schemas-only
+title: "Apply Working-Database Schemas"
+description: "Applies only the schema-apply step — used for testing the schema lifecycle independently."
+
+entries:
+  - task: apply-working-schema
+    remarks: "Ensure working-database tables and views exist and match declarations."

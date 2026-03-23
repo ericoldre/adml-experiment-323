@@ -1,0 +1,20 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: customer_snapshot
+description: "Snapshot-side customer staging table populated from seed data for the example."
+database: snapshot
+
+columns:
+  - name: customer_id
+    type: integer
+    nullable: false
+    key: true
+
+  - name: name
+    type: varchar(100)
+    nullable: false
+
+  - name: status
+    type: varchar(20)
+    nullable: false

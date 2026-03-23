@@ -1,0 +1,10 @@
+apiVersion: adml/v0
+kind: plan
+
+id: hello-postgres
+title: "Hello Postgres"
+description: "The simplest ADML plan — creates a single table in Postgres."
+
+entries:
+  - task: create-table
+    remarks: "Create the hello table if it does not exist."

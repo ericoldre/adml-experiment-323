@@ -1,0 +1,6 @@
+apiVersion: adml/v0
+kind: task
+type: invoke-plan
+id: run-teardown
+title: "Invoke teardown sub-plan"
+plan: teardown/teardown-plan

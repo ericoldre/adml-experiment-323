@@ -1,0 +1,44 @@
+apiVersion: adml/v0
+kind: task
+type: sql-execute
+
+id: seed-data
+title: "Create schema and seed tables for DML rule examples"
+description: >
+  Creates the wrk schema, the M_CUSTOMERS and M_ORDERS tables, and inserts
+  sample data so the DML rule tasks have rows to operate on.
+
+connectionName: working
+
+sql: |
+  CREATE SCHEMA IF NOT EXISTS wrk;
+
+  DROP TABLE IF EXISTS wrk.m_orders;
+  DROP TABLE IF EXISTS wrk.m_customers;
+
+  CREATE TABLE wrk.m_customers (
+    customer_id VARCHAR(10) NOT NULL PRIMARY KEY,
+    customer_name VARCHAR(50) NOT NULL
+  );
+
+  CREATE TABLE wrk.m_orders (
+    order_id VARCHAR(20) NOT NULL PRIMARY KEY,
+    customer_id VARCHAR(10) NOT NULL,
+    order_status VARCHAR(10) NOT NULL DEFAULT 'OPEN',
+    order_type VARCHAR(4) NOT NULL,
+    region VARCHAR(20)
+  );
+
+  INSERT INTO wrk.m_customers (customer_id, customer_name) VALUES
+    ('C001', 'Contoso Ltd'),
+    ('C002', 'Fabrikam Inc'),
+    ('C003', 'Northwind Co'),
+    ('C004', 'AdventureWorks');
+
+  INSERT INTO wrk.m_orders (order_id, customer_id, order_status, order_type, region) VALUES
+    ('ORD-001', 'C001', 'OPEN', 'STD',  'EMEA'),
+    ('ORD-002', 'C001', 'OPEN', 'RUSH', 'EMEA'),
+    ('ORD-003', 'C002', 'OPEN', 'STD',  'APAC'),
+    ('ORD-004', 'C003', 'CLOSED', 'STD', 'AMER'),
+    ('ORD-005', 'C003', 'OPEN', 'CORR', 'AMER');
+  -- Note: C004 has no orders, so insert-correction will pick it up.

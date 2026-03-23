@@ -1,0 +1,21 @@
+apiVersion: adml/v0
+kind: task
+type: migrate-rule-update
+
+id: update-status
+title: "Update order status"
+description: >
+  Updates ORDER_STATUS on M_ORDERS using the default {name}_NEW convention.
+  The source query produces ORDER_ID (PK for join) and ORDER_STATUS_NEW
+  (matched to ORDER_STATUS after stripping the _NEW suffix).
+
+sql: |
+  SELECT
+    o.order_id,
+    CASE
+      WHEN o.order_type = 'RUSH' THEN 'PRIORITY'
+      WHEN o.order_type = 'CORR' THEN 'CORRECTED'
+      ELSE 'PROCESSED'
+    END AS order_status_new
+  FROM wrk.m_orders o
+  WHERE o.order_status = 'OPEN'

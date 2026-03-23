@@ -1,0 +1,33 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: wrk_sales_order
+description: >
+  Working table for sales orders. ORIGIN_COUNTRY holds the source country
+  code; DEST_COUNTRY_NAME is populated by the second translation task
+  to show per-task default override.
+database: working
+
+columns:
+  - name: order_id
+    type: varchar(10)
+    nullable: false
+    key: true
+
+  - name: customer_id
+    type: varchar(10)
+    nullable: false
+
+  - name: origin_country
+    type: varchar(3)
+    nullable: true
+    description: "FOO-system country code from the source order."
+
+  - name: dest_country_name
+    type: varchar(60)
+    nullable: true
+    description: "BAR country name — populated by the value-map-apply task."
+
+  - name: order_total
+    type: numeric(12,2)
+    nullable: true

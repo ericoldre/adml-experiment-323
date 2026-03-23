@@ -1,0 +1,45 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: m_orders
+description: "Mirror table for target Orders. Holds transformed order data in the working database."
+database: working
+
+columns:
+  - name: order_id
+    type: varchar(20)
+    nullable: false
+    key: true
+
+  - name: customer_id
+    type: varchar(10)
+    nullable: false
+    description: "Foreign key to m_customers."
+
+  - name: order_date
+    type: date
+    nullable: false
+    default: "CURRENT_DATE"
+
+  - name: order_type
+    type: varchar(4)
+    nullable: false
+    description: "Target order type — populated via value mapping lookup."
+
+  - name: currency
+    type: varchar(5)
+    nullable: true
+
+  - name: net_value
+    type: numeric(15,2)
+    nullable: true
+
+  - name: source_order_number
+    type: varchar(35)
+    nullable: true
+    description: "Original source system order number, retained for reconciliation."
+
+indexes:
+  - name: ix_m_orders_customer
+    columns: [customer_id]
+    unique: false

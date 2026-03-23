@@ -1,0 +1,34 @@
+# ────────────────────────────────────────────────────────────────────────────
+# Seed WRK_SALES_ORDER working-table rows
+# ────────────────────────────────────────────────────────────────────────────
+# Loads sample sales-order rows with FOO-system country codes. The
+# dest_country_name column is intentionally left empty — it will be
+# populated by the second value-map-apply task.
+# ────────────────────────────────────────────────────────────────────────────
+
+apiVersion: adml/v0
+kind: task
+type: seed-data-load
+
+id: seed-wrk-sales-order
+title: "Seed WRK_SALES_ORDER rows"
+description: >
+  Loads sample orders with source country codes to demonstrate
+  per-task default override behavior.
+
+connectionName: working
+table: wrk_sales_order
+preClearTable: true
+dataFile: seed-data/wrk_sales_order.csv
+dataFormat: csv
+
+columns:
+  mappings:
+    - source: order_id
+      target: order_id
+    - source: customer_id
+      target: customer_id
+    - source: origin_country
+      target: origin_country
+    - source: order_total
+      target: order_total

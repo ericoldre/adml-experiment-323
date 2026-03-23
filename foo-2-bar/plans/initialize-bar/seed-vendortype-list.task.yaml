@@ -1,0 +1,24 @@
+apiVersion: adml/v0
+kind: task
+type: seed-data-load
+
+id: seed-vendortype-list
+title: "Seed VENDORTYPE_LIST data"
+description: "Loads VENDORTYPE_LIST rows from the example CSV file into the tgtbar schema."
+
+connectionName: tgtbar
+table: vendortype_list
+preClearTable: true
+dataFile: ../../seed-data/tgtbar/vendortype_list.csv
+dataFormat: csv
+
+columns:
+  mappings:
+    - source: VendorType
+      target: VendorType
+    - source: Description
+      target: Description
+    - source: TEST1
+      target: TEST1
+    - source: Text
+      target: Text

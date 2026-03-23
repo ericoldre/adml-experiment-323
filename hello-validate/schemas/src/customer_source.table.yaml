@@ -1,0 +1,15 @@
+apiVersion: adml/v0
+kind: table-schema
+id: customer_source
+
+description: "Source-side customer table referenced by the working staging methodology placeholder."
+
+columns:
+  - name: CUSTOMER_ID
+    type: integer
+    nullable: false
+    key: true
+
+  - name: CUSTOMER_NAME
+    type: varchar(100)
+    nullable: false

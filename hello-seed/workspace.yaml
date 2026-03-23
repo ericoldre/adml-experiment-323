@@ -1,0 +1,14 @@
+apiVersion: adml/v0
+kind: workspace
+defaultPlan: seed-customers
+
+metadata:
+  owner: "examples"
+  description: "Example workspace demonstrating the seed-data-load task type."
+
+connections:
+  working:
+    description: "Working database where seed data is loaded."
+    provider: postgres
+    required: true
+    schema: ./schemas/working/

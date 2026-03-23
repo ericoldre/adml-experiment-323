@@ -1,0 +1,13 @@
+apiVersion: adml/v0
+kind: plan
+
+id: plan
+title: "Initialize wrkfoo2bar schema"
+description: "Applies the declared table definitions for the wrkfoo2bar connection."
+
+entries:
+  - task: validate-wrkfoo2bar-methodology
+    remarks: "Validate inline methodology declarations on the working table artifacts before applying schema changes."
+
+  - task: apply-wrkfoo2bar-schema
+    remarks: "Ensure the Postgres wrkfoo2bar datasource contains the expected tables."

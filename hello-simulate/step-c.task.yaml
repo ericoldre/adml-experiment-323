@@ -1,0 +1,6 @@
+apiVersion: adml/v0
+kind: task
+type: simulate
+id: step-c
+title: Third step
+outcome: succeeded

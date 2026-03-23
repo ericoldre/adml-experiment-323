@@ -1,0 +1,23 @@
+apiVersion: adml/v0
+kind: task
+type: value-map-apply
+
+id: xref-supplier-country
+title: "Map supplier country values via XTVALUEMAP"
+description: >
+  Reads each staged supplier row's CountryCode value, looks up the
+  BAR country code from XTVALUEMAP, and writes the resolved value to
+  ZCOUNTRY on the working table.
+
+table: vendor_foo_supplier_s
+valueMap: foo-country-to-bar-country-code
+
+inputs:
+  - CountryCode
+
+outputs:
+  - ZCOUNTRY
+
+where: |
+  "CountryCode" IS NOT NULL
+  AND "ZCOUNTRY" IS NULL

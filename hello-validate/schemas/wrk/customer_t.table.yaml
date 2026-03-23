@@ -1,0 +1,23 @@
+apiVersion: adml/v0
+kind: table-schema
+id: customer_t
+
+description: "Working target table with inline methodology pointing to the target schema artifact."
+
+methodology:
+  - type: working-target-table-ddl
+    target-design: ../tgt/customer_target.table.yaml
+
+columns:
+  - name: CUSTOMER_ID
+    type: integer
+    nullable: false
+    key: true
+
+  - name: CUSTOMER_NAME
+    type: varchar(100)
+    nullable: false
+
+  - name: ZTARGET_READY
+    type: boolean
+    nullable: true

@@ -1,0 +1,19 @@
+{
+  "TaskId": "validate-working-methodology",
+  "GeneratedAt": "2026-03-17T18:58:15.7633184+00:00",
+  "Items": [
+    {
+      "ArtifactPath": "schemas/wrk/customer_s.table.yaml",
+      "MethodologyType": "working-staging-table-ddl",
+      "IsValid": true,
+      "Issues": []
+    },
+    {
+      "ArtifactPath": "schemas/wrk/customer_t.table.yaml",
+      "MethodologyType": "working-target-table-ddl",
+      "IsValid": true,
+      "Issues": []
+    }
+  ],
+  "IsValid": true
+}

@@ -1,0 +1,6 @@
+order_id,customer_id,origin_country,order_total
+ORD001,C001,US,1500.00
+ORD002,C002,DE,2300.50
+ORD003,C003,JP,890.00
+ORD004,C001,XX,450.00
+ORD005,C004,,120.00

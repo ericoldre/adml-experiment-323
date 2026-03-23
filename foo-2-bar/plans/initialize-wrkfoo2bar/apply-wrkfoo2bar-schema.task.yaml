@@ -1,0 +1,11 @@
+apiVersion: adml/v0
+kind: task
+type: schema-apply
+
+id: apply-wrkfoo2bar-schema
+title: "Apply wrkfoo2bar datasource schema"
+description: >
+  Reads the schema declared on the 'wrkfoo2bar' connection and ensures
+  the Postgres datasource contains the expected tables and columns.
+
+connectionName: wrkfoo2bar

@@ -1,0 +1,19 @@
+apiVersion: adml/v0
+kind: plan
+
+id: hello-snapshot-copy
+title: "Snapshot To Working Copy"
+description: "Applies snapshot/working schemas, seeds snapshot rows, then copies them into the working table."
+
+entries:
+  - task: apply-snapshot-schema
+    remarks: "Ensure the snapshot-side example table exists."
+
+  - task: apply-working-schema
+    remarks: "Ensure the working-side target table exists."
+
+  - task: seed-snapshot-customers
+    remarks: "Populate the snapshot-side rowset from CSV."
+
+  - task: stage-customers
+    remarks: "Copy the snapshot rowset into the working table using explicit mappings."

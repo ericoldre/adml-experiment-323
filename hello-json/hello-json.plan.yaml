@@ -1,0 +1,7 @@
+apiVersion: adml/v0
+kind: plan
+id: hello-json
+
+entries:
+  - task: json-task
+  - task: yaml-task

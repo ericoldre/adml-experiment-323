@@ -1,0 +1,29 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: m_orders
+description: "Working-database table for transformed order data."
+database: working
+
+columns:
+  - name: order_id
+    type: varchar(20)
+    nullable: false
+    key: true
+
+  - name: customer_id
+    type: varchar(10)
+    nullable: false
+
+  - name: order_status
+    type: varchar(10)
+    nullable: false
+    default: "'OPEN'"
+
+  - name: order_type
+    type: varchar(4)
+    nullable: false
+
+  - name: region
+    type: varchar(20)
+    nullable: true

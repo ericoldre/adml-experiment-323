@@ -1,0 +1,34 @@
+apiVersion: adml/v0
+kind: task
+type: seed-data-load
+
+id: seed-customer
+title: "Seed CUSTOMER data"
+description: "Loads CUSTOMER rows from the example CSV file into the foo schema."
+
+connectionName: srcfoo
+table: customer
+preClearTable: true
+dataFile: ../../seed-data/srcfoo/customer.csv
+dataFormat: csv
+
+columns:
+  mappings:
+    - source: CustomerID
+      target: CustomerID
+    - source: FirstName
+      target: FirstName
+    - source: LastName
+      target: LastName
+    - source: Phone
+      target: Phone
+    - source: Email
+      target: Email
+    - source: Street
+      target: Street
+    - source: City
+      target: City
+    - source: State
+      target: State
+    - source: Zipcode
+      target: Zipcode

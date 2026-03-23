@@ -1,0 +1,25 @@
+apiVersion: adml/v0
+kind: value-map-definition
+
+id: foo-country-to-bar-country-code
+description: |
+  Maps FOO supplier country values to BAR country codes using
+  XTVALUEMAP rows stored on the migrate connection.
+
+inputs:
+  - source_country_code
+
+outputs:
+  - target_country_code
+
+onMissing: leave-unchanged
+
+implementation:
+  kind: xtvaluemap
+  connectionName: migrate
+  tableName: XTVALUEMAP
+  datasource: BARADML
+  checkTable: COUNTRY_LIST
+  sourceSystem: FOOADML
+  caseSensitive: false
+  resolvedValueStrategy: load-value-then-target-value

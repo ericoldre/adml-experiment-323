@@ -1,0 +1,15 @@
+apiVersion: adml/v0
+kind: plan
+id: plan
+title: "Apply tgtbar schema"
+description: "Applies the declared Postgres schema for the tgtbar datasource."
+
+entries:
+  - task: apply-bar-schema
+    remarks: "Ensure the Postgres tgtbar datasource contains the expected tables."
+
+  - task: seed-vendortype-list
+    remarks: "Load VENDORTYPE_LIST rows from the example CSV file."
+
+  - task: seed-vendor
+    remarks: "Load VENDOR rows from the example CSV file."

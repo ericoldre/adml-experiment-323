@@ -1,0 +1,29 @@
+apiVersion: adml/v0
+kind: task
+type: seed-data-load
+
+id: seed-customers
+title: "Seed customer reference data"
+description: >
+  Loads customer reference data from a CSV file into the m_seed_customers
+  working-database table. Column mappings rename the CSV headers to match
+  the target schema. Pre-clear removes any existing rows first.
+
+connectionName: working
+table: m_seed_customers
+preClearTable: true
+dataFile: ../seed-data/customers.csv
+dataFormat: csv
+
+columns:
+  mappings:
+    - source: customer_id
+      target: customer_id
+    - source: name
+      target: customer_name
+    - source: country_code
+      target: country
+    - source: city
+      target: city
+    - source: zip
+      target: postal_code

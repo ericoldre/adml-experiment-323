@@ -1,0 +1,3 @@
+apiVersion: adml/v0
+kind: workspace
+defaultPlan: hello-invoke-plan

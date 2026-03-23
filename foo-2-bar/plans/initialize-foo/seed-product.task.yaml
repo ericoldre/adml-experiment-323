@@ -1,0 +1,36 @@
+apiVersion: adml/v0
+kind: task
+type: seed-data-load
+
+id: seed-product
+title: "Seed PRODUCT data"
+description: "Loads PRODUCT rows from the example CSV file into the foo schema."
+
+connectionName: srcfoo
+table: product
+preClearTable: true
+dataFile: ../../seed-data/srcfoo/product.csv
+dataFormat: csv
+
+columns:
+  mappings:
+    - source: ProductID
+      target: ProductID
+    - source: ProductName
+      target: ProductName
+    - source: SupplierID
+      target: SupplierID
+    - source: CategoryID
+      target: CategoryID
+    - source: QuantityPerUnit
+      target: QuantityPerUnit
+    - source: UnitPrice
+      target: UnitPrice
+    - source: UnitsInStock
+      target: UnitsInStock
+    - source: UnitsOnOrder
+      target: UnitsOnOrder
+    - source: ReorderLevel
+      target: ReorderLevel
+    - source: Discontinued
+      target: Discontinued

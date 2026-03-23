@@ -1,0 +1,62 @@
+# ────────────────────────────────────────────────────────────────────────────
+# Value-Map Definition — FOO country code → BAR country name
+# ────────────────────────────────────────────────────────────────────────────
+# This reusable workspace artifact declares a named value map.
+# Any plan in this workspace can reference it by id to apply the mapping
+# to one or more tables without repeating the lookup details.
+#
+# The definition describes HOW to look things up. Each task that uses it
+# specifies WHICH columns to read from and write to.
+# ────────────────────────────────────────────────────────────────────────────
+
+apiVersion: adml/v0
+kind: value-map-definition
+id: foo-country-code-to-bar-country-name
+
+description: |
+  Maps FOO-system country codes (e.g. "US", "DE", "JP") to
+  BAR-system country names (e.g. "United States", "Germany", "Japan")
+  using an existing XTVALUEMAP lookup table on the migrate connection.
+
+# Positional labels — document what each slot represents.
+# The runtime uses only the list length (arity) for validation;
+# the label text is documentary and does not participate in matching.
+inputs:
+  - source_country_code       # slot 0
+
+outputs:
+  - target_country_name       # slot 0
+
+# Missing-value behavior: what the runtime does when a row's input value
+# has no resolved mapping in the lookup set.
+#   use-default       →  write the `default` value below
+#   leave-unchanged   →  do not touch the row
+#   set-null          →  explicitly write NULL
+#   fail              →  fail the task
+onMissing: use-default
+default: UNKNOWN
+
+# Implementation details — how the runtime resolves this value map at
+# execution time. For phase 1, only implementation.kind: xtvaluemap is
+# supported.
+implementation:
+  kind: xtvaluemap
+
+  # Connection that hosts the XTVALUEMAP lookup table.
+  connectionName: migrate
+  tableName: XTVALUEMAP
+
+  # Row-selection filters — these identify the relevant slice of XTVALUEMAP
+  # for this mapping.
+  datasource: BAR
+  checkTable: COUNTRY_NAME
+  sourceSystem: FOO
+
+  # When true (default), lookup keys are compared exactly as stored.
+  # When false, both the input value and the ZXREF_VALUE are lowered
+  # before comparison.
+  caseSensitive: false
+
+  # How the mapped output value is resolved from the lookup row:
+  #   load-value-then-target-value  →  prefer LOAD_VALUE, fall back to TARGET_VALUE
+  resolvedValueStrategy: load-value-then-target-value

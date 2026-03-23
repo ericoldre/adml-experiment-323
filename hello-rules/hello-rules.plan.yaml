@@ -1,0 +1,20 @@
+apiVersion: adml/v0
+kind: plan
+
+id: hello-rules
+title: "Hello Rules"
+description: "Demonstrates DML rule tasks for inserting, updating, and deleting rows."
+
+defaultConnection: working
+defaultSchema: wrk
+defaultTable: m_orders
+
+entries:
+  - task: insert-correction
+    remarks: "Insert correction rows for missing orders."
+
+  - task: update-status
+    remarks: "Update ORDER_STATUS using the {name}_NEW convention."
+
+  - task: delete-inactive
+    remarks: "Delete orders flagged as inactive."

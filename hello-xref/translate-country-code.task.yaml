@@ -1,0 +1,46 @@
+# ────────────────────────────────────────────────────────────────────────────
+# Apply a value map — basic usage with definition default
+# ────────────────────────────────────────────────────────────────────────────
+# This task applies the "foo-country-code-to-bar-country-name" value map
+# to WRK_CUSTOMER. The task specifies the input and output columns
+# directly — no logical-name indirection from the definition.
+#
+# At execution time the runtime will:
+#   1. Pre-load the relevant XTVALUEMAP rows from the migrate connection.
+#   2. Match each row's SRC_COUNTRY_CODE against ZXREF_VALUE (case-insensitive
+#      because the definition sets caseSensitive: false).
+#   3. Write the resolved value to BAR_COUNTRY_NAME.
+#   4. For unresolved mappings, write the definition-level default ("UNKNOWN").
+# ────────────────────────────────────────────────────────────────────────────
+
+apiVersion: adml/v0
+kind: task
+type: value-map-apply
+id: translate-country-code
+
+title: "Map FOO country codes → BAR country names"
+description: >
+  Reads each customer's SRC_COUNTRY_CODE column, looks up the mapped
+  BAR country name from XTVALUEMAP, and writes the result to
+  BAR_COUNTRY_NAME. Uses the definition-level default for any values
+  that do not have a completed mapping.
+
+# connectionName resolves from plan defaultConnection ("working").
+table: wrk_customer
+
+# Reference the reusable value-map definition by id.
+valueMap: foo-country-code-to-bar-country-name
+
+# Column(s) to read the lookup key from (positionally matched to definition).
+inputs:
+  - src_country_code          # maps to definition slot 0
+
+# Column(s) to write the mapped value to (positionally matched to definition).
+outputs:
+  - bar_country_name          # maps to definition slot 0
+
+# Optional SQL WHERE clause — only rows matching this predicate are processed.
+# Omit to process all rows.
+where: |
+  src_country_code IS NOT NULL
+  AND bar_country_name IS NULL

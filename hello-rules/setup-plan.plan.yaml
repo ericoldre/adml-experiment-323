@@ -1,0 +1,10 @@
+apiVersion: adml/v0
+kind: plan
+
+id: setup-plan
+title: "Hello Rules — Setup"
+description: "Creates the wrk schema and seeds M_CUSTOMERS / M_ORDERS with sample data."
+
+entries:
+  - task: seed-data
+    remarks: "Create schema, tables, and sample data."

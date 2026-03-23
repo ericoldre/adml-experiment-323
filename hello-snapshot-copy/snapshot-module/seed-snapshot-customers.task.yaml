@@ -1,0 +1,24 @@
+apiVersion: adml/v0
+kind: task
+type: seed-data-load
+
+id: seed-snapshot-customers
+title: "Seed snapshot-side customer rows"
+description: >
+  Loads the example snapshot table from CSV so the later snapshot-to-working-copy
+  task has a concrete source rowset to read.
+
+connectionName: snapshot
+table: customer_snapshot
+preClearTable: true
+dataFile: ../seed-data/snapshot-customers.csv
+dataFormat: csv
+
+columns:
+  mappings:
+    - source: customer_id
+      target: customer_id
+    - source: name
+      target: name
+    - source: status
+      target: status

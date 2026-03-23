@@ -1,0 +1,23 @@
+apiVersion: adml/v0
+kind: task
+type: value-map-apply
+
+id: xref-supplier-state
+title: "Map supplier state values via XTVALUEMAP"
+description: >
+  Reads each staged supplier row's StateCode value, looks up the
+  BAR region value from XTVALUEMAP, and writes the resolved value to
+  ZREGION on the working table.
+
+table: vendor_foo_supplier_s
+valueMap: foo-state-to-bar-region
+
+inputs:
+  - StateCode
+
+outputs:
+  - ZREGION
+
+where: |
+  "StateCode" IS NOT NULL
+  AND "ZREGION" IS NULL

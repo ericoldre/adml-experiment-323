@@ -1,0 +1,28 @@
+apiVersion: adml/v0
+kind: task
+type: migrate-rule-update
+
+id: normalize-supplier-codes
+title: "Normalize staged supplier code values"
+description: >
+  Trims staged CountryCode and StateCode values in the working table before
+  XTVALUEMAP-backed lookups run. This keeps the example resilient when the
+  source snapshot carries fixed-width code values with trailing spaces.
+
+table: vendor_foo_supplier_s
+
+sql: |
+  SELECT
+    s."SupplierID",
+    NULLIF(TRIM(s."CountryCode"), '') AS "CountryCodeTrimmed",
+    NULLIF(TRIM(s."StateCode"), '') AS "StateCodeTrimmed"
+  FROM vendor_foo_supplier_s s
+  WHERE (s."CountryCode" IS NOT NULL AND s."CountryCode" <> TRIM(s."CountryCode"))
+     OR (s."StateCode" IS NOT NULL AND s."StateCode" <> TRIM(s."StateCode"))
+
+columns:
+  update:
+    - source: CountryCodeTrimmed
+      target: CountryCode
+    - source: StateCodeTrimmed
+      target: StateCode

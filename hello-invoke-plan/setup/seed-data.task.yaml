@@ -1,0 +1,7 @@
+apiVersion: adml/v0
+kind: task
+type: simulate
+id: seed-data
+title: "Seed data (simulated)"
+outcome: succeeded
+delayMs: 50

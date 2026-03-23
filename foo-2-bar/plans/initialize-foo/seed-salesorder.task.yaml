@@ -1,0 +1,34 @@
+apiVersion: adml/v0
+kind: task
+type: seed-data-load
+
+id: seed-salesorder
+title: "Seed SALESORDER data"
+description: "Loads SALESORDER rows from the example CSV file into the foo schema."
+
+connectionName: srcfoo
+table: salesorder
+preClearTable: true
+dataFile: ../../seed-data/srcfoo/salesorder.csv
+dataFormat: csv
+
+columns:
+  mappings:
+    - source: OrderID
+      target: OrderID
+    - source: CustomerID
+      target: CustomerID
+    - source: FirstName
+      target: FirstName
+    - source: LastName
+      target: LastName
+    - source: ProductID
+      target: ProductID
+    - source: UnitPrice
+      target: UnitPrice
+    - source: OrderAmount
+      target: OrderAmount
+    - source: OrderDate
+      target: OrderDate
+    - source: ShipDate
+      target: ShipDate

@@ -1,0 +1,13 @@
+apiVersion: adml/v0
+kind: plan
+
+id: plan
+title: "Initialize migrate schema"
+description: "Applies the declared table definitions for the migrate connection and loads XTVALUEMAP seed data."
+
+entries:
+  - task: apply-migrate-schema
+    remarks: "Ensure the Postgres migrate datasource contains the expected tables."
+
+  - task: seed-xtvaluemap
+    remarks: "Load XTVALUEMAP rows from the example CSV file."

@@ -1,0 +1,4 @@
+customer_id,name,status
+1001,Alice,ACTIVE
+1002,Bob,INACTIVE
+1003,Carla,ACTIVE

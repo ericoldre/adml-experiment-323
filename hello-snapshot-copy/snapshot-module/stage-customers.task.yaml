@@ -1,0 +1,27 @@
+apiVersion: adml/v0
+kind: task
+type: snapshot-to-working-copy
+
+id: stage-customers
+title: "Copy snapshot customers into working"
+description: >
+  Copies the snapshot-side customer rowset into the working table using
+  explicit source-column assignments plus a literal value for the ready flag.
+
+sourceConnectionName: snapshot
+sourceObjectName: customer_snapshot
+
+connectionName: working
+table: m_customer_working
+preClearTable: true
+
+columns:
+  mappings:
+    - source: customer_id
+      target: customer_id
+    - source: name
+      target: customer_name
+    - source: status
+      target: legacy_status
+    - literal: "N"
+      target: ready_flag

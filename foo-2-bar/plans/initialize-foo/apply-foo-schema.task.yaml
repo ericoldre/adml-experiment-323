@@ -1,0 +1,12 @@
+apiVersion: adml/v0
+kind: task
+type: schema-apply
+
+id: apply-foo-schema
+title: "Apply foo datasource schema"
+description: >
+  Reads the schema declared on the 'foo' connection and ensures
+  the Postgres datasource contains the expected tables, columns,
+  and constraints.
+
+connectionName: srcfoo

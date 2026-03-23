@@ -1,0 +1,22 @@
+apiVersion: adml/v0
+kind: plan
+
+id: plan
+title: "Main plan"
+description: "Runs all four initialization plans and then executes the product transform flow."
+
+entries:
+  - plan: plans/initialize-foo/plan
+    remarks: "Apply srcfoo schema and load seed data."
+
+  - plan: plans/initialize-bar/plan
+    remarks: "Apply tgtbar schema and load seed data."
+
+  - plan: plans/initialize-migrate/plan
+    remarks: "Apply migrate schema and load XTVALUEMAP seed data."
+
+  - plan: plans/initialize-wrkfoo2bar/plan
+    remarks: "Initialize the wrkfoo2bar working schema."
+
+  - plan: plans/product-transform/plan
+    remarks: "Execute product transformation tasks after the working schema is ready."

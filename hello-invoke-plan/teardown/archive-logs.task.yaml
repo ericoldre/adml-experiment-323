@@ -1,0 +1,6 @@
+apiVersion: adml/v0
+kind: task
+type: simulate
+id: archive-logs
+title: "Archive logs (simulated)"
+outcome: succeeded

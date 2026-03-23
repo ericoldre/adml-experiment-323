@@ -1,0 +1,28 @@
+apiVersion: adml/v0
+kind: plan
+id: plan
+title: "Apply foo schema"
+description: "Applies the declared Postgres schema for the foo datasource."
+
+entries:
+  - task: apply-foo-schema
+    remarks: "Ensure the Postgres foo datasource contains the quoted uppercase CUSTOMER table."
+
+  - task: seed-customer
+    remarks: "Load CUSTOMER rows from the example CSV file."
+
+  - task: seed-employee
+    remarks: "Load EMPLOYEE rows from the example CSV file, excluding binary photo payloads."
+
+  - task: seed-product
+    remarks: "Load PRODUCT rows from the example CSV file."
+
+  - task: seed-product-type
+    remarks: "Load PRODUCT_TYPE rows from the example CSV file."
+
+  - task: seed-supplier
+    remarks: "Load Supplier rows from the example CSV file."
+
+  - task: seed-salesorder
+    remarks: "Load SALESORDER rows from the example CSV file."
+

@@ -1,0 +1,38 @@
+apiVersion: adml/v0
+kind: plan
+
+id: hello-xref
+title: "Hello XREF — Value Mapping"
+description: >
+  Applies the working-database schema, then maps FOO country codes
+  to BAR country names on the WRK_CUSTOMER table using a reusable
+  value-map definition backed by XTVALUEMAP.
+
+defaultConnection: working
+
+entries:
+  # ── Setup ──────────────────────────────────────────────────────────────
+  # 1. Ensure the working-database schema is up to date.
+  - task: apply-working-schema
+    remarks: "Create or update WRK_CUSTOMER and WRK_SALES_ORDER to match the declared schema."
+
+  # 2. Seed the XTVALUEMAP lookup table on the migrate connection.
+  - task: seed-xtvaluemap
+    remarks: "Bootstrap country-code translation rows in XTVALUEMAP."
+
+  # 3. Seed sample rows into the working tables.
+  - task: seed-wrk-customer
+    remarks: "Load sample customer rows with FOO-system country codes."
+
+  - task: seed-wrk-sales-order
+    remarks: "Load sample sales-order rows with FOO-system country codes."
+
+  # ── Map Values ─────────────────────────────────────────────────────────
+  # 5. Apply the country-code value map using the definition default
+  #    for any unresolved mappings.
+  - task: translate-country-code
+    remarks: "Resolve FOO country codes → BAR country names via XTVALUEMAP."
+
+  # 6. Apply a second definition (same lookup, different default) to another table.
+  - task: translate-country-code-with-fallback
+    remarks: "Same value map, but writes 'NOT_MAPPED' for unresolved rows."

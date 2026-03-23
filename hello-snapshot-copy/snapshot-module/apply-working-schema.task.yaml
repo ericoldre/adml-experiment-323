@@ -1,0 +1,11 @@
+apiVersion: adml/v0
+kind: task
+type: schema-apply
+
+id: apply-working-schema
+title: "Apply working-side schema"
+description: >
+  Creates the example working-side table that receives rows from the snapshot
+  relation.
+
+connectionName: working

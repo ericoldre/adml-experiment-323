@@ -1,0 +1,276 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: product_type
+description: "Product type table translated from the source SQL Server definition to the closest Postgres-compatible schema."
+database: foo
+
+columns:
+  - name: PRODUCT
+    type: varchar(18)
+    nullable: false
+    key: true
+
+  - name: PRODUCTTYPE
+    type: varchar(4)
+    nullable: true
+
+  - name: CREATIONDATE
+    type: date
+    nullable: true
+
+  - name: CREATIONTIME
+    type: timestamp
+    nullable: true
+
+  - name: CREATIONDATETIME
+    type: timestamptz
+    nullable: true
+
+  - name: CREATEDBYUSER
+    type: varchar(50)
+    nullable: true
+
+  - name: LASTCHANGEDATE
+    type: date
+    nullable: true
+
+  - name: LASTCHANGEDBYUSER
+    type: varchar(50)
+    nullable: true
+
+  - name: ISMARKEDFORDELETION
+    type: boolean
+    nullable: true
+
+  - name: CROSSPLANTSTATUS
+    type: varchar(2)
+    nullable: true
+
+  - name: CROSSPLANTSTATUSVALIDITYDATE
+    type: date
+    nullable: true
+
+  - name: PRODUCTOLDID
+    type: varchar(40)
+    nullable: true
+
+  - name: GROSSWEIGHT
+    type: numeric(13,3)
+    nullable: true
+
+  - name: WEIGHTUNIT
+    type: varchar(3)
+    nullable: true
+
+  - name: WEIGHTISOUNIT
+    type: varchar(3)
+    nullable: true
+
+  - name: BASEUNIT
+    type: varchar(3)
+    nullable: true
+
+  - name: BASEISOUNIT
+    type: varchar(3)
+    nullable: true
+
+  - name: ITEMCATEGORYGROUP
+    type: varchar(4)
+    nullable: true
+
+  - name: NETWEIGHT
+    type: numeric(13,3)
+    nullable: true
+
+  - name: AUTHORIZATIONGROUP
+    type: varchar(4)
+    nullable: true
+
+  - name: SIZEORDIMENSIONTEXT
+    type: varchar(32)
+    nullable: true
+
+  - name: INDUSTRYSTANDARDNAME
+    type: varchar(40)
+    nullable: true
+
+  - name: PRODUCTSTANDARDID
+    type: varchar(40)
+    nullable: true
+
+  - name: PRODUCTISCONFIGURABLE
+    type: boolean
+    nullable: true
+
+  - name: ISBATCHMANAGEMENTREQUIRED
+    type: boolean
+    nullable: true
+
+  - name: EXTERNALPRODUCTGROUP
+    type: varchar(18)
+    nullable: true
+
+  - name: SERIALNOEXPLICITNESSLEVEL
+    type: varchar(1)
+    nullable: true
+
+  - name: ISAPPROVEDBATCHRECORDREQD
+    type: boolean
+    nullable: true
+
+  - name: ISPILFERABLE
+    type: boolean
+    nullable: true
+
+  - name: ISRELEVANTFORHZDSSUBSTANCES
+    type: boolean
+    nullable: true
+
+  - name: HASVARIABLETAREWEIGHT
+    type: boolean
+    nullable: true
+
+  - name: MAXIMUMPACKAGINGLENGTH
+    type: numeric(15,3)
+    nullable: true
+
+  - name: MAXIMUMPACKAGINGWIDTH
+    type: numeric(15,3)
+    nullable: true
+
+  - name: MAXIMUMPACKAGINGHEIGHT
+    type: numeric(15,3)
+    nullable: true
+
+  - name: MAXIMUMCAPACITY
+    type: numeric(15,3)
+    nullable: true
+
+  - name: OVERCAPACITYTOLERANCE
+    type: numeric(3,1)
+    nullable: true
+
+  - name: UNITFORMAXPACKAGINGDIMENSIONS
+    type: varchar(3)
+    nullable: true
+
+  - name: MAXPACKGGDIMENSIONISOUNIT
+    type: varchar(3)
+    nullable: true
+
+  - name: BASEUNITSPECIFICPRODUCTLENGTH
+    type: numeric(13,3)
+    nullable: true
+
+  - name: BASEUNITSPECIFICPRODUCTWIDTH
+    type: numeric(13,3)
+    nullable: true
+
+  - name: BASEUNITSPECIFICPRODUCTHEIGHT
+    type: numeric(13,3)
+    nullable: true
+
+  - name: PRODUCTMEASUREMENTUNIT
+    type: varchar(3)
+    nullable: true
+
+  - name: PRODUCTMEASUREMENTISOUNIT
+    type: varchar(3)
+    nullable: true
+
+  - name: LASTCHANGEDATETIME
+    type: timestamptz
+    nullable: true
+
+  - name: LASTCHANGETIME
+    type: timestamp
+    nullable: true
+
+  - name: PRODUCTDOCUMENTCHANGENUMBER
+    type: varchar(6)
+    nullable: true
+
+  - name: PRODUCTDOCUMENTPAGECOUNT
+    type: varchar(3)
+    nullable: true
+
+  - name: PRODUCTDOCUMENTPAGENUMBER
+    type: varchar(3)
+    nullable: true
+
+  - name: DOCUMENTISCREATEDBYCAD
+    type: boolean
+    nullable: true
+
+  - name: PRODUCTIONORINSPECTIONMEMOTXT
+    type: text
+    nullable: true
+
+  - name: PRODUCTIONMEMOPAGEFORMAT
+    type: varchar(4)
+    nullable: true
+
+  - name: PRODUCTISHIGHLYVISCOUS
+    type: boolean
+    nullable: true
+
+  - name: TRANSPORTISINBULK
+    type: boolean
+    nullable: true
+
+  - name: PRODEFFCTYPARAMVALSAREASSIGNED
+    type: boolean
+    nullable: true
+
+  - name: PRODISENVIRONMENTALLYRELEVANT
+    type: boolean
+    nullable: true
+
+  - name: PACKINGREFERENCEPRODUCT
+    type: varchar(40)
+    nullable: true
+
+  - name: BASICPRODUCT
+    type: varchar(40)
+    nullable: true
+
+  - name: PRODUCTDOCUMENTNUMBER
+    type: varchar(22)
+    nullable: true
+
+  - name: PRODUCTDOCUMENTVERSION
+    type: varchar(2)
+    nullable: true
+
+  - name: PRODUCTDOCUMENTTYPE
+    type: varchar(3)
+    nullable: true
+
+  - name: PRODUCTDOCUMENTPAGEFORMAT
+    type: varchar(4)
+    nullable: true
+
+  - name: DISCOUNTINKINDELIGIBILITY
+    type: varchar(1)
+    nullable: true
+
+  - name: PRODUCTMANUFACTURERNUMBER
+    type: varchar(40)
+    nullable: true
+
+  - name: PRODUCTGROUP
+    type: varchar(18)
+    nullable: true
+
+  - name: INDUSTRYSECTOR
+    type: varchar(1)
+    nullable: true
+
+  - name: DIVISION
+    type: varchar(2)
+    nullable: true
+
+  - name: _PRODUCTDESCRIPTION
+    type: text
+    nullable: true

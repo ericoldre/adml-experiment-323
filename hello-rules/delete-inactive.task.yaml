@@ -1,0 +1,17 @@
+apiVersion: adml/v0
+kind: task
+type: migrate-rule-delete
+
+id: delete-inactive
+title: "Delete inactive orders"
+description: >
+  Deletes rows from M_ORDERS where the order status indicates cancellation.
+  The source query must include the PK column (ORDER_ID) so the executor
+  can generate the DELETE ... WHERE PK IN (...) statement.
+
+sql: |
+  SELECT o.order_id
+  FROM wrk.m_orders o
+  WHERE o.order_status IN ('CANCELLED', 'VOID')
+
+maxAffectedRows: 100

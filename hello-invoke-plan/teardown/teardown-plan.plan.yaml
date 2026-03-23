@@ -1,0 +1,9 @@
+apiVersion: adml/v0
+kind: plan
+
+id: teardown-plan
+title: "Teardown sub-plan"
+description: "Simulates cleanup steps invoked by the parent plan after the main work."
+
+entries:
+  - task: archive-logs

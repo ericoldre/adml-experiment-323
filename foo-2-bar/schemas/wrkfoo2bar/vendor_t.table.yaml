@@ -1,0 +1,98 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: vendor_t
+description: "Augmented vendor tracking table translated from the source SQL Server AUG_VENDOR_T definition."
+database: wrkfoo2bar
+
+methodology:
+  - type: working-target-table-ddl
+    target-design: ../tgtbar/vendor.table.yaml
+
+columns:
+  - name: ZSOURCE
+    type: varchar(50)
+    nullable: false
+    key: true
+
+  - name: ZDEPLOY
+    type: varchar(10)
+    nullable: false
+    key: true
+
+  - name: ZLEGACYVENDORID
+    type: varchar(50)
+    nullable: false
+    key: true
+
+  - name: VendorID
+    type: varchar(25)
+    nullable: true
+
+  - name: Vendor
+    type: varchar(50)
+    nullable: true
+
+  - name: VendorType
+    type: integer
+    nullable: true
+
+  - name: Region
+    type: varchar(50)
+    nullable: true
+
+  - name: Country
+    type: varchar(50)
+    nullable: true
+
+  - name: ExternalID
+    type: integer
+    nullable: true
+
+  - name: ZERROR_LOG
+    type: varchar(2000)
+    nullable: true
+
+  - name: ZLOADED
+    type: boolean
+    nullable: true
+
+  - name: ZLOADDATE
+    type: date
+    nullable: true
+
+  - name: ZDATA_READY
+    type: boolean
+    nullable: true
+
+  - name: ZBUSINESS_READY
+    type: boolean
+    nullable: true
+
+  - name: ZSTAGE_READY
+    type: boolean
+    nullable: true
+
+  - name: ZTARGET_READY
+    type: boolean
+    nullable: true
+
+  - name: ZCHUNK
+    type: integer
+    nullable: true
+
+  - name: ZINTARGETSYS
+    type: boolean
+    nullable: true
+
+  - name: ZREMEDIATED
+    type: boolean
+    nullable: true
+
+  - name: ZCRITICAL
+    type: boolean
+    nullable: true
+
+  - name: ZSTD_FIELD1
+    type: varchar(5)
+    nullable: true

@@ -1,0 +1,8 @@
+customer_id,name,country_code,city,zip
+CUST001,Contoso Ltd,US,Redmond,98052
+CUST002,Fabrikam Inc,US,Seattle,98101
+CUST003,Northwind Traders,CA,Toronto,M5H 2N2
+CUST004,Adventure Works,GB,London,EC2A 1NT
+CUST005,Woodgrove Bank,DE,Frankfurt,60311
+CUST006,Tailspin Toys,US,Portland,97201
+CUST007,Datum Corporation,AU,Sydney,2000

@@ -1,0 +1,29 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: m_seed_customers
+description: "Mirror table for target Customers. Receives seed data from a CSV file."
+database: working
+
+columns:
+  - name: customer_id
+    type: varchar(10)
+    nullable: false
+    key: true
+
+  - name: customer_name
+    type: varchar(100)
+    nullable: false
+
+  - name: country
+    type: varchar(3)
+    nullable: true
+    default: "'US'"
+
+  - name: city
+    type: varchar(40)
+    nullable: true
+
+  - name: postal_code
+    type: varchar(10)
+    nullable: true

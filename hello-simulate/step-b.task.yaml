@@ -1,0 +1,7 @@
+apiVersion: adml/v0
+kind: task
+type: simulate
+id: step-b
+title: Second step (with delay)
+outcome: succeeded
+delayMs: 100

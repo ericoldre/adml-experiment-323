@@ -1,0 +1,21 @@
+apiVersion: adml/v0
+kind: task
+type: migrate-rule-insert
+
+id: insert-correction
+title: "Insert correction orders"
+description: >
+  Inserts rows into M_ORDERS for customers that are missing an order record.
+  Uses default name-match mode: source column names match target column names.
+
+sql: |
+  SELECT
+    c.customer_id || '-CORR' AS order_id,
+    c.customer_id,
+    'CORRECTION' AS order_status,
+    'CORR' AS order_type
+  FROM wrk.m_customers c
+  LEFT JOIN wrk.m_orders o ON o.customer_id = c.customer_id
+  WHERE o.order_id IS NULL
+
+maxAffectedRows: 500

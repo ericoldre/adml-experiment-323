@@ -1,0 +1,34 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: m_customers
+description: "Mirror table for target Customers. Holds transformed customer data in the working database."
+database: working
+
+columns:
+  - name: customer_id
+    type: varchar(10)
+    nullable: false
+    key: true
+
+  - name: customer_name
+    type: varchar(100)
+    nullable: true
+
+  - name: country
+    type: varchar(3)
+    nullable: true
+    default: "'US'"
+
+  - name: city
+    type: varchar(40)
+    nullable: true
+
+  - name: postal_code
+    type: varchar(10)
+    nullable: true
+
+  - name: company_code
+    type: varchar(4)
+    nullable: false
+    description: "Target company code — populated via xt_company_code lookup."

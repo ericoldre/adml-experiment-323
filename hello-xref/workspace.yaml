@@ -1,0 +1,23 @@
+apiVersion: adml/v0
+kind: workspace
+defaultPlan: hello-xref
+
+metadata:
+  owner: "examples"
+  description: >
+    Demonstrates the value-map-apply task type — the ADML equivalent
+    of the predecessor XREF / value-mapping feature. A reusable value-map
+    definition describes how FOO country codes map to BAR country names via
+    XTVALUEMAP, and the plan applies that mapping to a working table.
+
+connections:
+  working:
+    description: "Working database where transformed data lives."
+    provider: postgres
+    required: true
+    schema: ./schemas/working/
+
+  migrate:
+    description: "Migration-control database containing XTVALUEMAP lookup tables."
+    provider: postgres
+    required: true

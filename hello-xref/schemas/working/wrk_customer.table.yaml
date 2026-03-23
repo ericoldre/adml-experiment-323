@@ -1,0 +1,29 @@
+apiVersion: adml/v0
+kind: table-schema
+
+id: wrk_customer
+description: >
+  Working table for customer data. SRC_COUNTRY_CODE holds the original
+  FOO-system country code; BAR_COUNTRY_NAME will be populated by the
+  value-translation-apply task.
+database: working
+
+columns:
+  - name: customer_id
+    type: varchar(10)
+    nullable: false
+    key: true
+
+  - name: customer_name
+    type: varchar(100)
+    nullable: false
+
+  - name: src_country_code
+    type: varchar(3)
+    nullable: true
+    description: "Original country code from the FOO source system."
+
+  - name: bar_country_name
+    type: varchar(60)
+    nullable: true
+    description: "Translated country name for the BAR target system — populated by the value-map-apply task."

@@ -1,0 +1,14 @@
+apiVersion: adml/v0
+kind: workspace
+defaultPlan: hello-rules
+
+metadata:
+  owner: "examples"
+  description: "Example workspace demonstrating DML rule tasks: migrate-rule-insert, migrate-rule-update, and migrate-rule-delete."
+
+connections:
+  working:
+    description: "Working database where DML rules execute against migration tables."
+    provider: postgres
+    required: true
+    schema: ./schemas/working/

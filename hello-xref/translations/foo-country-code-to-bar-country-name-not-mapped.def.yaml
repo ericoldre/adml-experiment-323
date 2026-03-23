@@ -1,0 +1,37 @@
+# ────────────────────────────────────────────────────────────────────────────
+# Value-Map Definition — FOO country code → BAR country name (NOT_MAPPED)
+# ────────────────────────────────────────────────────────────────────────────
+# Same lookup source as foo-country-code-to-bar-country-name, but writes
+# "NOT_MAPPED" for unresolved values instead of "UNKNOWN".
+#
+# This demonstrates that when different tasks need different missing-value
+# behavior, each gets its own definition. The lookup machinery is
+# identical — only onMissing / default differ.
+# ────────────────────────────────────────────────────────────────────────────
+
+apiVersion: adml/v0
+kind: value-map-definition
+id: foo-country-code-to-bar-country-name-not-mapped
+
+description: |
+  Maps FOO-system country codes to BAR-system country names using
+  XTVALUEMAP. Unresolved values are written as "NOT_MAPPED".
+
+inputs:
+  - source_country_code       # slot 0
+
+outputs:
+  - target_country_name       # slot 0
+
+onMissing: use-default
+default: NOT_MAPPED
+
+implementation:
+  kind: xtvaluemap
+  connectionName: migrate
+  tableName: XTVALUEMAP
+  datasource: BAR
+  checkTable: COUNTRY_NAME
+  sourceSystem: FOO
+  caseSensitive: false
+  resolvedValueStrategy: load-value-then-target-value

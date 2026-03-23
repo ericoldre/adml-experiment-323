@@ -1,0 +1,10 @@
+apiVersion: adml/v0
+kind: plan
+
+id: hello-validate
+title: "Validate inline methodology declarations"
+description: "Runs methodology validation for the working-table schema artifacts in this example workspace."
+
+entries:
+  - task: validate-working-methodology
+    remarks: "Validate the inline methodology declarations and write a structured report."

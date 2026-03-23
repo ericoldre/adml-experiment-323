@@ -1,0 +1,32 @@
+apiVersion: adml/v0
+kind: table-schema
+id: customer_s
+
+description: "Working staging table with inline methodology pointing back to the source and target schemas."
+
+methodology:
+  - type: working-staging-table-ddl
+    source-snapshot-table: ../src/customer_source.table.yaml
+    working-target-table: ../tgt/customer_target.table.yaml
+
+columns:
+  - name: CUSTOMER_ID
+    type: integer
+    nullable: false
+    key: true
+
+  - name: CUSTOMER_NAME
+    type: varchar(100)
+    nullable: false
+
+  - name: ZCUSTOMER_ID
+    type: integer
+    nullable: true
+
+  - name: ZCUSTOMER_NAME
+    type: varchar(100)
+    nullable: true
+
+  - name: ZSOURCE
+    type: varchar(25)
+    nullable: true

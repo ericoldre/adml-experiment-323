@@ -1,0 +1,16 @@
+apiVersion: adml/v0
+kind: plan
+
+id: hello-invoke-plan
+title: "Hello invoke-plan"
+description: "Demonstrates both inline child-plan entries and explicit invoke-plan tasks."
+
+entries:
+  - plan: setup/setup-plan
+    remarks: "Invoke the setup sub-plan inline before continuing with main work."
+
+  - task: main-step
+    remarks: "A simulate step representing the main work after setup completes."
+
+  - task: run-teardown
+    remarks: "Invoke the teardown sub-plan to clean up after the main work."

@@ -1,0 +1,12 @@
+apiVersion: adml/v0
+kind: task
+type: schema-apply
+
+id: apply-working-schema
+title: "Apply working-database schema"
+description: >
+  Reads the schema declared on the 'working' connection and ensures
+  all tables exist with the correct columns, types, and constraints.
+  Creates missing tables and alters drifted ones.
+
+connectionName: working

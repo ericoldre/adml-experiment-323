@@ -1,0 +1,42 @@
+# ────────────────────────────────────────────────────────────────────────────
+# Create and seed the XTVALUEMAP lookup table on the migrate connection
+# ────────────────────────────────────────────────────────────────────────────
+# This task creates the XTVALUEMAP table (if it doesn't exist) and inserts
+# the translation rows that the value-translation-apply tasks will consume.
+# In a real migration project this table already exists from predecessor
+# tooling; here we bootstrap it for demo purposes.
+# ────────────────────────────────────────────────────────────────────────────
+
+apiVersion: adml/v0
+kind: task
+type: sql-execute
+
+id: seed-xtvaluemap
+title: "Create and seed XTVALUEMAP lookup table"
+description: >
+  Bootstraps the XTVALUEMAP table on the migrate connection with
+  country-code translation rows for the demo scenario.
+
+connectionName: migrate
+sql: |
+  CREATE SCHEMA IF NOT EXISTS migrate;
+
+  CREATE TABLE IF NOT EXISTS "XTVALUEMAP" (
+    "DATASOURCE"      VARCHAR(40)  NOT NULL,
+    "CHECKTABLE"      VARCHAR(128) NOT NULL,
+    "ZXREF_ZSOURCE"   VARCHAR(40)  NOT NULL,
+    "ZXREF_VALUE"     VARCHAR(200) NOT NULL,
+    "LOAD_VALUE"      VARCHAR(200),
+    "TARGET_VALUE"    VARCHAR(200)
+  );
+
+  DELETE FROM "XTVALUEMAP"
+  WHERE "DATASOURCE" = 'BAR'
+    AND "CHECKTABLE" = 'COUNTRY_NAME'
+    AND "ZXREF_ZSOURCE" = 'FOO';
+
+  INSERT INTO "XTVALUEMAP" ("DATASOURCE", "CHECKTABLE", "ZXREF_ZSOURCE", "ZXREF_VALUE", "LOAD_VALUE", "TARGET_VALUE")
+  VALUES
+    ('BAR', 'COUNTRY_NAME', 'FOO', 'US', 'United States', NULL),
+    ('BAR', 'COUNTRY_NAME', 'FOO', 'DE', 'Germany',       NULL),
+    ('BAR', 'COUNTRY_NAME', 'FOO', 'JP', 'Japan',         NULL);

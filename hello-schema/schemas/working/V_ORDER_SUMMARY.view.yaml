@@ -1,0 +1,17 @@
+apiVersion: adml/v0
+kind: view-schema
+
+id: v_order_summary
+description: "Summary view joining orders with customer names."
+
+sql: |
+  SELECT
+    o.order_id,
+    o.customer_id,
+    c.customer_name,
+    o.order_date,
+    o.order_type,
+    o.net_value,
+    o.currency
+  FROM m_orders o
+  INNER JOIN m_customers c ON c.customer_id = o.customer_id

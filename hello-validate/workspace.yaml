@@ -1,0 +1,8 @@
+apiVersion: adml/v0
+kind: workspace
+defaultPlan: validate-module/hello-validate
+
+metadata:
+  owner: "examples"
+  description: "Minimal workspace demonstrating methodology-validate against inline methodology declarations."
+

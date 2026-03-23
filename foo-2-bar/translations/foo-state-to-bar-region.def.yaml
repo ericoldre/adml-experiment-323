@@ -1,0 +1,25 @@
+apiVersion: adml/v0
+kind: value-map-definition
+
+id: foo-state-to-bar-region
+description: |
+  Maps FOO supplier state values to BAR region values using
+  XTVALUEMAP rows stored on the migrate connection.
+
+inputs:
+  - source_state_code
+
+outputs:
+  - target_region
+
+onMissing: leave-unchanged
+
+implementation:
+  kind: xtvaluemap
+  connectionName: migrate
+  tableName: XTVALUEMAP
+  datasource: BARADML
+  checkTable: REGION_LIST
+  sourceSystem: FOOADML
+  caseSensitive: false
+  resolvedValueStrategy: load-value-then-target-value

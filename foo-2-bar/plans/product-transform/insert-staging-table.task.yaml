@@ -1,0 +1,46 @@
+apiVersion: adml/v0
+kind: task
+type: snapshot-to-working-copy
+
+id: insert-staging-table
+title: "Copy srcfoo supplier into vendor_foo_supplier_s"
+description: >
+  Copies all rows from the srcfoo supplier snapshot table into the
+  wrkfoo2bar working table vendor_foo_supplier_s. All source columns
+  are mapped 1:1; augmentation columns remain NULL for later enrichment.
+
+sourceConnectionName: srcfoo
+sourceObjectName: supplier
+
+connectionName: wrkfoo2bar
+table: vendor_foo_supplier_s
+preClearTable: true
+
+columns:
+  mappings:
+    - source: SupplierID
+      target: SupplierID
+    - source: Supplier
+      target: Supplier
+    - source: AddressType
+      target: AddressType
+    - source: AddressLine1
+      target: AddressLine1
+    - source: AddressLine2
+      target: AddressLine2
+    - source: City
+      target: City
+    - source: StateCode
+      target: StateCode
+    - source: PostalCode
+      target: PostalCode
+    - source: CountryCode
+      target: CountryCode
+    - source: PhoneNumber
+      target: PhoneNumber
+    - source: ActiveFlag
+      target: ActiveFlag
+    - source: CreatedDate
+      target: CreatedDate
+    - source: CreatedBy
+      target: CreatedBy

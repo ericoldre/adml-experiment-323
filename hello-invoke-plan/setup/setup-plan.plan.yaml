@@ -1,0 +1,10 @@
+apiVersion: adml/v0
+kind: plan
+
+id: setup-plan
+title: "Setup sub-plan"
+description: "Simulates environment preparation steps invoked by the parent plan."
+
+entries:
+  - task: create-schema
+  - task: seed-data

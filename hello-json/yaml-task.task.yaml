@@ -1,0 +1,9 @@
+apiVersion: adml/v0
+kind: task
+type: simulate
+id: yaml-task
+title: Task authored in YAML
+description: >
+  This task is defined as a .yaml file, sitting alongside a .json task
+  in the same plan — proving the formats mix freely.
+outcome: succeeded
