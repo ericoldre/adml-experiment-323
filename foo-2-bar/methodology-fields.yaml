@@ -1,0 +1,164 @@
+apiVersion: adml/v0
+kind: methodology-fields
+
+id: methodology-fields
+description: >
+  Standard methodology fields for migration tracking and workflow.
+  Derived from the predecessor REF_DMRFIELD reference table.
+
+fields:
+  # ── Mapping targets ────────────────────────────────────────
+  # Consultants explicitly map values to these fields in
+  # source-mapping-definitions.
+
+  - name: SOURCE
+    columnName: ZSOURCE
+    type: varchar(50)
+    nullable: false
+    key: true
+    mapping: true
+    description: "Legacy data source system identifier."
+
+  - name: DEPLOY
+    columnName: ZDEPLOY
+    type: varchar(10)
+    nullable: false
+    key: true
+    mapping: true
+    description: "Deployment group for phased migration loads."
+
+  - name: CRITICAL
+    columnName: ZCRITICAL
+    type: boolean
+    nullable: true
+    mapping: true
+    description: "Flags records as critical for validation prioritization."
+
+  - name: ACTIVE
+    columnName: ZACTIVE
+    type: boolean
+    nullable: true
+    default: true
+    mapping: true
+    description: "Source record is relevant for loading. Inactive records are excluded from downstream processing."
+
+  - name: STD_FIELD1
+    columnName: ZSTD_FIELD1
+    type: varchar(5)
+    nullable: true
+    mapping: true
+    description: "Custom standard field — consultant-defined per project."
+
+  # ── Operational fields ──────────────────────────────────────
+  # Populated by the runtime, validators, or operational processes.
+
+  - name: ERROR_LOG
+    columnName: ZERROR_LOG
+    type: varchar(2000)
+    nullable: true
+    description: "Concatenated error listing from validation rules."
+
+  - name: DUPLICATE_OF
+    columnName: ZDUPLICATE_OF
+    type: varchar(50)
+    nullable: true
+    staging: true
+    target: false
+    description: "ID of the winning duplicate record."
+
+  - name: DUPLICATE_SOURCE
+    columnName: ZDUPLICATE_SOURCE
+    type: varchar(50)
+    nullable: true
+    staging: true
+    target: false
+    description: "Source system of the winning duplicate record."
+
+  - name: INACTIVE_REASON
+    columnName: ZINACTIVE_REASON
+    type: varchar(2000)
+    nullable: true
+    staging: true
+    target: false
+    description: "Reason a record was marked inactive."
+
+  - name: CHUNK
+    columnName: ZCHUNK
+    type: integer
+    nullable: true
+    staging: false
+    target: true
+    description: "Export file chunking integer for batch processing."
+
+  - name: INTARGETSYS
+    columnName: ZINTARGETSYS
+    type: boolean
+    nullable: true
+    staging: false
+    target: true
+    description: "Indicates the record already exists in the target system."
+
+  - name: REMEDIATED
+    columnName: ZREMEDIATED
+    type: boolean
+    nullable: true
+    staging: false
+    target: true
+    description: "Indicates the record contains remediated (corrected) values."
+
+  # ── Tracking fields ─────────────────────────────────────────
+  # Track record-level status through the migration pipeline.
+
+  - name: LOADED
+    columnName: ZLOADED
+    type: boolean
+    nullable: true
+    staging: false
+    target: true
+    tracking: true
+    description: "Record was successfully loaded to the target system."
+
+  - name: LOADDATE
+    columnName: ZLOADDATE
+    type: date
+    nullable: true
+    staging: false
+    target: true
+    tracking: true
+    description: "Date the record was loaded to the target system."
+
+  - name: DATA_READY
+    columnName: ZDATA_READY
+    type: boolean
+    nullable: true
+    staging: false
+    target: true
+    tracking: true
+    description: "Data cleansing validation passed — no data-quality errors."
+
+  - name: BUSINESS_READY
+    columnName: ZBUSINESS_READY
+    type: boolean
+    nullable: true
+    staging: false
+    target: true
+    tracking: true
+    description: "Business validation passed — business rules satisfied."
+
+  - name: STAGE_READY
+    columnName: ZSTAGE_READY
+    type: boolean
+    nullable: true
+    staging: false
+    target: true
+    tracking: true
+    description: "Staging validation passed — record is ready for target load."
+
+  - name: TARGET_READY
+    columnName: ZTARGET_READY
+    type: boolean
+    nullable: true
+    staging: false
+    target: true
+    tracking: true
+    description: "Target validation passed — record meets all target system requirements."

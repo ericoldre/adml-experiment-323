@@ -1,0 +1,72 @@
+apiVersion: adml/v0
+kind: source-mapping-definition
+id: vendor-from-supplier
+
+title: Vendor from Supplier
+description: >-
+  Maps legacy supplier records from srcfoo to the target vendor
+  representation in tgtbar.
+
+source:
+  connectionName: srcfoo
+  table: srcfoo.supplier
+  sourceSqlAlias: sup
+
+target:
+  connectionName: tgtbar
+  table: tgtbar.vendor
+
+methodology:
+  - type: working-staging-table-ddl
+    source-snapshot-table: ../schemas/srcfoo/supplier.table.yaml
+    working-target-table: ../schemas/tgtbar/vendor.table.yaml
+
+mappings:
+  - target: vendor_id
+    action: copy
+    sourceField: supplier_id
+
+  - target: vendor_name
+    action: expression
+    expression: 'UPPER(sup."supplier_name")'
+    comment: Normalise supplier name to uppercase.
+
+  - target: status
+    action: default
+    default: ACTIVE
+
+  - target: country_code
+    action: xref
+    sourceField: country
+    valueMap: translations/country-codes
+
+  - target: category
+    action: rule
+    sourceField: type_code
+    rule: >-
+      Map type_code to category using the business-defined
+      classification rules agreed with the data steward.
+
+  - target: region
+    action: rule-xref
+    sourceField: region_code
+    rule: Resolve region hierarchy before cross-referencing.
+    valueMap: translations/region-map
+
+  - target: internal_flag
+    action: internal
+    comment: Populated by the migration framework.
+
+  - target: legacy_notes
+    action: not-mapped
+    comment: No target column exists for free-text supplier notes.
+
+  - target: manual_override
+    action: manual
+    comment: Populated by an analyst after migration.
+
+  - target: ZSOURCE
+    action: default
+    default: LEGACY_ERP
+    isMethodology: true
+    comment: Methodology meta-field identifying the source system.

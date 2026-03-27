@@ -11,7 +11,7 @@ Files:
 - `initialize-migrate/apply-migrate-schema.task.yaml` - `schema-apply` task targeting the `migrate` datasource
 - `initialize-migrate/seed-xtvaluemap.task.yaml` - `seed-data-load` task that loads `XTVALUEMAP.csv` into the `migrate` schema
 - `product-transform/plan.yaml` - product transformation plan that stages supplier data into the working schema
-- `product-transform/insert-staging-table.task.yaml` - `snapshot-to-working-copy` task that copies `srcfoo.supplier` into `wrkfoo2bar.vendor_foo_supplier_s`
+- `product-transform/insert-staging-table.task.yaml` - `copy-rows` task that copies `srcfoo.supplier` into `wrkfoo2bar.vendor_foo_supplier_s`
 - `product-transform/normalize-supplier-codes.task.yaml` - `migrate-rule-update` task that trims staged `CountryCode` and `StateCode` values before value-map lookups
 - `product-transform/xref-supplier-country.task.yaml` - `value-map-apply` task that resolves staged supplier country values via `XTVALUEMAP`
 - `product-transform/xref-supplier-state.task.yaml` - `value-map-apply` task that resolves staged supplier state values via `XTVALUEMAP`

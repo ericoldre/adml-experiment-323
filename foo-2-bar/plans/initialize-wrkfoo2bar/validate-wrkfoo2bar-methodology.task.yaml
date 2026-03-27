@@ -1,5 +1,0 @@
-apiVersion: adml/v0
-kind: task
-type: methodology-validate
-id: validate-wrkfoo2bar-methodology
-files: schemas/wrkfoo2bar/*.table.yaml

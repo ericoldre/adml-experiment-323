@@ -16,7 +16,7 @@ columns:
     nullable: false
 
   - name: VendorType
-    type: integer
+    type: varchar(50)
     nullable: false
 
   - name: Address1
@@ -53,6 +53,10 @@ columns:
 
   - name: Phone
     type: varchar(25)
+    nullable: true
+
+  - name: InService
+    type: varchar(1)
     nullable: true
 
   - name: Website

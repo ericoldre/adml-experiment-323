@@ -1,0 +1,42 @@
+apiVersion: adml/v0
+kind: task
+type: copy-rows
+
+id: copy-to-vendor-t
+title: "Copy enriched staging rows into vendor_t"
+description: >
+  Copies enriched rows from the vendor_foo_supplier_s staging table into the
+  vendor_t target tracking table. The Z-prefixed columns populated by
+  earlier xref tasks are mapped into vendor_t along with tracking defaults.
+
+sourceConnectionName: wrkfoo2bar
+sourceObjectName: vendor_foo_supplier_s
+
+connectionName: wrkfoo2bar
+table: vendor_t
+preClear:
+  where:
+    ZSOURCE: "FOO"
+
+columns:
+  mappings:
+    - literal: "FOO"
+      target: ZSOURCE
+    - literal: "FULL"
+      target: ZDEPLOY
+    - source: SupplierID
+      target: ZLEGACYVENDORID
+    - source: ZVENDORID
+      target: VendorID
+    - source: ZVENDOR
+      target: Vendor
+    - source: ZVENDORTYPE
+      target: VendorType
+    - source: ZREGION
+      target: Region
+    - source: ZCOUNTRY
+      target: Country
+    - source: ZEXTERNALID
+      target: ExternalID
+    - source: ZINSERVICE
+      target: InService

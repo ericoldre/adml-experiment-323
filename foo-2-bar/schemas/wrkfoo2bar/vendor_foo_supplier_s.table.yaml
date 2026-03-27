@@ -73,7 +73,7 @@ columns:
     nullable: true
 
   - name: ZVENDORTYPE
-    type: integer
+    type: varchar(50)
     nullable: true
 
   - name: ZREGION
@@ -86,4 +86,8 @@ columns:
 
   - name: ZEXTERNALID
     type: integer
+    nullable: true
+
+  - name: ZINSERVICE
+    type: varchar(1)
     nullable: true

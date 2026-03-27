@@ -1,20 +1,21 @@
 apiVersion: adml/v0
 kind: task
-type: snapshot-to-working-copy
+type: copy-rows
 
 id: insert-staging-table
 title: "Copy srcfoo supplier into vendor_foo_supplier_s"
 description: >
   Copies all rows from the srcfoo supplier snapshot table into the
-  wrkfoo2bar working table vendor_foo_supplier_s. All source columns
-  are mapped 1:1; augmentation columns remain NULL for later enrichment.
+  wrkfoo2bar working table vendor_foo_supplier_s. Source columns are
+  mapped 1:1 and obvious augmentation columns are pre-populated;
+  remaining Z-columns (ZREGION, ZCOUNTRY) are enriched by later xref tasks.
 
 sourceConnectionName: srcfoo
 sourceObjectName: supplier
 
 connectionName: wrkfoo2bar
 table: vendor_foo_supplier_s
-preClearTable: true
+preClear: {}
 
 columns:
   mappings:
@@ -44,3 +45,12 @@ columns:
       target: CreatedDate
     - source: CreatedBy
       target: CreatedBy
+    - source: SupplierID
+      target: ZVENDORID
+    - source: Supplier
+      target: ZVENDOR
+    - literal: "Supplier"
+      target: ZVENDORTYPE
+    - expression: |
+        CASE WHEN src."ActiveFlag" THEN 'T' ELSE 'F' END
+      target: ZINSERVICE
