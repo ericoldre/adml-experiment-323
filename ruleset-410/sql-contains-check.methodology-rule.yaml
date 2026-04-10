@@ -1,0 +1,34 @@
+apiVersion: adml/v0
+kind: methodology-rule
+id: sql-contains-check
+
+target-kind: task
+description: >
+  Checks that the task's SQL statement contains a required word specified
+  in the rule configuration. Demonstrates externalizing the JavaScript
+  evaluator into a separate .js file via includes.
+
+config-schema:
+  type: object
+  required: [word]
+  additionalProperties: false
+  properties:
+    word:
+      type: string
+      description: The word that must appear in the task's sql property.
+
+error-schema:
+  type: object
+  required: [key, classification, message]
+  properties:
+    key:
+      type: string
+    classification:
+      type: string
+    message:
+      type: string
+  additionalProperties: false
+
+includes:
+  - property: evaluate
+    file: sql-contains-check.js
