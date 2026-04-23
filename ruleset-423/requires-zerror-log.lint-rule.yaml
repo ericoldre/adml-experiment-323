@@ -21,6 +21,12 @@ error-schema:
       type: string
   additionalProperties: false
 
-includes:
-  - property: evaluate
+# demostrates the use of an external JavaScript file as the evaluator for a lint rule
+patches:
+  - op: add
+    path: /evaluate
     file: requires-zerror-log.js
+
+# includes:
+#   - property: evaluate
+#     file: requires-zerror-log.js
