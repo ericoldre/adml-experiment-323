@@ -1,0 +1,26 @@
+apiVersion: adml/v0
+kind: lint-rule
+name: requires-zerror-log
+
+target-kind: report
+description: >
+  Enforces that every report writes a finding back to the ZERROR_LOG
+  methodology column via subject.updates. Reports that identify bad rows
+  must document the reason on those rows so migration team members can
+  diagnose issues without re-running queries.
+
+error-schema:
+  type: object
+  required: [key, classification, message]
+  properties:
+    key:
+      type: string
+    classification:
+      type: string
+    message:
+      type: string
+  additionalProperties: false
+
+includes:
+  - property: evaluate
+    file: requires-zerror-log.js
